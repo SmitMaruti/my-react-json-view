@@ -1,5 +1,5 @@
 {
-    "name": "@SmitMaruti/my-react-json-view",
+    "name": "@smitmaruti/my-react-json-view",
     "description": "Interactive react component for displaying javascript arrays and JSON objects.",
     "version": "1.0.0",
     "main": "dist/main.js",
@@ -68,7 +68,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/mac-s-g/react-json-view.git"
+        "url": "https://github.com/SmitMaruti/my-react-json-view.git"
     },
     "keywords": [
         "array-viewer",
@@ -95,9 +95,9 @@
     "license": "MIT",
     "author": "Mac Gainor",
     "bugs": {
-        "url": "https://github.com/mac-s-g/react-json-view/issues"
+        "url": "https://github.com/SmitMaruti/my-react-json-view/issues"
     },
-    "homepage": "https://github.com/mac-s-g/react-json-view",
+    "homepage": "https://github.com/SmitMaruti/my-react-json-view",
     "directories": {
         "docs": "docs",
         "test": "test"
