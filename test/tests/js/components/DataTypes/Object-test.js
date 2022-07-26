@@ -50,6 +50,7 @@ describe('<JsonObject />', function () {
             <JsonObject
                 src={src}
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 rjvId={rjvId}
                 theme="rjv-default"
                 indentWidth={1}
@@ -104,6 +105,7 @@ describe('<JsonObject />', function () {
             <JsonObject
                 src={src}
                 namespace={['arr_test']}
+                namespaceVariable={[{ name: 'arr_test', type: 'object' }]}
                 name="test"
                 rjvId={rjvId}
                 theme="rjv-default"
@@ -126,6 +128,7 @@ describe('<JsonObject />', function () {
             <JsonObject
                 src={src}
                 namespace={['arr_test']}
+                namespaceVariable={[{ name: 'arr_test', type: 'object' }]}
                 name="test"
                 rjvId={rjvId}
                 theme="rjv-default"
@@ -147,6 +150,7 @@ describe('<JsonObject />', function () {
             <JsonObject
                 src={src}
                 namespace={['arr_test']}
+                namespaceVariable={[{ name: 'arr_test', type: 'object' }]}
                 name="test"
                 rjvId={rjvId}
                 theme="rjv-default"
@@ -168,6 +172,7 @@ describe('<JsonObject />', function () {
             <JsonObject
                 src={src}
                 namespace={['arr_test']}
+                namespaceVariable={[{ name: 'arr_test', type: 'object' }]}
                 name="test"
                 rjvId={rjvId}
                 theme="rjv-default"
@@ -190,6 +195,7 @@ describe('<JsonObject />', function () {
             <JsonObject
                 src={src}
                 namespace={['arr_test']}
+                namespaceVariable={[{ name: 'arr_test', type: 'object' }]}
                 name="test"
                 rjvId={rjvId}
                 theme="rjv-default"
@@ -212,6 +218,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 collapsed={false}
             />
         );
@@ -226,6 +233,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 rjvId={rjvId}
                 collapsed={false}
             />
@@ -241,6 +249,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 rjvId={rjvId}
                 collapsed={false}
             />
@@ -256,6 +265,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 collapsed={false}
                 indentWidth={1}
             />
@@ -271,6 +281,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 rjvId={rjvId}
                 collapsed={true}
                 indentWidth={1}
@@ -288,6 +299,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 rjvId={rjvId}
                 collapsed={true}
                 indentWidth={1}
@@ -305,6 +317,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 collapsed={false}
                 shouldCollapse={() => true}
             />
@@ -321,6 +334,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 collapsed={false}
                 shouldCollapse={() => false}
                 indentWidth={1}
@@ -342,6 +356,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 sortKeys={true}
                 collapsed={false}
                 shouldCollapse={() => false}
@@ -365,6 +380,7 @@ describe('<JsonObject />', function () {
                 src={src}
                 theme="rjv-default"
                 namespace={['root']}
+                namespaceVariable={[{ name: 'root', type: 'object' }]}
                 collapsed={false}
                 shouldCollapse={() => false}
                 quotesOnKeys={true}

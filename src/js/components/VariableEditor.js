@@ -22,7 +22,12 @@ import {
 } from './DataTypes/DataTypes';
 
 //clibboard icon
-import { Edit, CheckCircle, RemoveCircle as Remove } from './icons';
+import {
+    Edit,
+    CheckCircle,
+    RemoveCircle as Remove,
+    AddVariable
+} from './icons';
 
 //theme
 import Theme from './../themes/getStyle';
@@ -49,13 +54,15 @@ class VariableEditor extends React.PureComponent {
             type,
             theme,
             namespace,
+            namespaceVariable,
             indentWidth,
             enableClipboard,
             onEdit,
             onDelete,
             onSelect,
             displayArrayKey,
-            quotesOnKeys
+            quotesOnKeys,
+            onVariableAdd
         } = this.props;
         const { editMode } = this.state;
         return (
@@ -144,6 +151,42 @@ class VariableEditor extends React.PureComponent {
                 {onDelete !== false && editMode == false
                     ? this.getRemoveIcon()
                     : null}
+                {this.state.hovered && (
+                    <AddVariable
+                        style={{
+                            cursor: 'pointer',
+                            height: '1em',
+                            width: '1em'
+                        }}
+                        handleClick={() => {
+                            let str = '';
+                            let prevType = namespaceVariable[0].type;
+                            namespaceVariable.forEach((item, index) => {
+                                str +=
+                                    item.type === 'object'
+                                        ? `${item.name}.`
+                                        : `${item.name}[`;
+                                if (
+                                    prevType === 'array' &&
+                                    item.type === 'object'
+                                ) {
+                                    str = str.substring(0, str.length - 1);
+                                    str += '].';
+                                } else if (
+                                    prevType === 'array' &&
+                                    item.type === 'array'
+                                ) {
+                                    str = str.substring(0, str.length - 1);
+                                    str += index === 0 ? '[' : '][';
+                                } else if (prevType === 'array') str += ']';
+                                prevType = item.type;
+                            });
+                            str += variable.name;
+                            if (prevType === 'array') str += ']';
+                            onVariableAdd(str);
+                        }}
+                    />
+                )}
             </div>
         );
     }

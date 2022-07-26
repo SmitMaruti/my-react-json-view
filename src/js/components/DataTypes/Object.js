@@ -122,9 +122,7 @@ class RjvObject extends React.PureComponent {
                     {...Theme(this.props.theme, 'ellipsis')}
                     class="node-ellipsis"
                     onClick={this.toggleCollapsed}
-                >
-                    ...
-                </div>
+                ></div>
             );
         }
     };
@@ -184,6 +182,7 @@ class RjvObject extends React.PureComponent {
             depth,
             src,
             namespace,
+            namespaceVariable,
             name,
             type,
             parent_type,
@@ -238,13 +237,16 @@ class RjvObject extends React.PureComponent {
     }
 
     renderObjectContents = (variables, props) => {
+        // console.log({ variables, props, p: this.props });
         const {
             depth,
             parent_type,
             index_offset,
             groupArraysAfterLength,
-            namespace
+            namespace,
+            namespaceVariable
         } = this.props;
+        // console.log({ namespace });
         const { object_type } = this.state;
         let elements = [],
             variable;
@@ -255,7 +257,16 @@ class RjvObject extends React.PureComponent {
 
         keys.forEach(name => {
             variable = new JsonVariable(name, variables[name]);
-
+            //console.log({ variable });
+            // console.log({
+            //     arr: [
+            //         ...namespaceVariable,
+            //         {
+            //             name: variable.name,
+            //             type: variable.type
+            //         }
+            //     ]
+            // });
             if (parent_type === 'array_group' && index_offset) {
                 variable.name = parseInt(variable.name) + index_offset;
             }
@@ -269,6 +280,13 @@ class RjvObject extends React.PureComponent {
                         name={variable.name}
                         src={variable.value}
                         namespace={namespace.concat(variable.name)}
+                        //namespace={namespace}
+                        namespaceVariable={namespaceVariable.concat([
+                            {
+                                name: variable.name,
+                                type: variable.type
+                            }
+                        ])}
                         parent_type={object_type}
                         {...props}
                     />
@@ -290,6 +308,13 @@ class RjvObject extends React.PureComponent {
                         name={variable.name}
                         src={variable.value}
                         namespace={namespace.concat(variable.name)}
+                        //namespace={namespace}
+                        namespaceVariable={namespaceVariable.concat([
+                            {
+                                name: variable.name,
+                                type: variable.type
+                            }
+                        ])}
                         type="array"
                         parent_type={object_type}
                         {...props}
@@ -301,7 +326,9 @@ class RjvObject extends React.PureComponent {
                         key={variable.name + '_' + namespace}
                         variable={variable}
                         singleIndent={SINGLE_INDENT}
+                        //namespace={namespace}
                         namespace={namespace}
+                        namespaceVariable={namespaceVariable}
                         type={this.props.type}
                         {...props}
                     />
@@ -314,7 +341,7 @@ class RjvObject extends React.PureComponent {
 }
 
 //just store name, value and type with a variable
-class JsonVariable {
+export class JsonVariable {
     constructor(name, value) {
         this.name = name;
         this.value = value;

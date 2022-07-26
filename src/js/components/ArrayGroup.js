@@ -49,6 +49,8 @@ export default class extends React.PureComponent {
             theme,
             jsvRoot,
             namespace,
+            namespaceVariable,
+            varrType,
             parent_type,
             ...rest
         } = this.props;
@@ -105,6 +107,7 @@ export default class extends React.PureComponent {
                                     index_offset={i * size}
                                     src={src.slice(i * size, i * size + size)}
                                     namespace={namespace}
+                                    namespaceVariable={namespaceVariable}
                                     type="array"
                                     parent_type="array_group"
                                     theme={theme}
