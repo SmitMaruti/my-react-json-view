@@ -45,7 +45,7 @@ ReactDom.render(
                 base0B: '#3A00DC', // float
                 base0C: '#000',
                 base0D: '#101010', // arrow open
-                base0E: '#101010', // arrow close
+                base0E: '#C800A4', // arrow close
                 base0F: '#3A00DC' // int
             }}
         />
@@ -61,19 +61,74 @@ ReactDom.render(
 //just a function to get an example JSON object
 function getExampleJson1() {
     return {
-        hello: {
-            world: 'world'
+        integrations: {
+            Heap: {
+                appId: '1126574409',
+                versionSettings: {
+                    version: '2.1.2',
+                    componentTypes: ['browser', 'server']
+                },
+                type: 'browser',
+                bundlingStatus: 'bundled'
+            },
+            'Segment.io': {
+                apiKey: 'P6QcGAlOrC1Yn6pfKhTW5NwEBA6huHIz',
+                unbundledIntegrations: [],
+                addBundledMetadata: true,
+                maybeBundledConfigIds: {
+                    Heap: ['62b2d6a413caaf69f0d72ed9']
+                },
+                versionSettings: {
+                    version: '4.4.7',
+                    componentTypes: ['browser']
+                }
+            }
         },
-        array: ['zero', 'one'],
-        key: 'value',
-        arrayOfObjects: [{ a: 'b' }, { a: 'c' }],
-        arrayOfArray: [
-            ['1', '2'],
-            ['3', '4'],
-            [{ a: 'b' }, { x: 'z' }],
-            [(['9', '10'], ['11', '12'], [1, 1.55])]
-        ]
+        plan: {
+            track: {
+                __default: {
+                    enabled: true,
+                    integrations: {}
+                }
+            },
+            identify: {
+                __default: {
+                    enabled: true
+                }
+            },
+            group: {
+                __default: {
+                    enabled: true
+                }
+            }
+        },
+        edgeFunction: {},
+        analyticsNextEnabled: true,
+        middlewareSettings: {},
+        enabledMiddleware: {},
+        metrics: {
+            sampleRate: 0.1
+        },
+        legacyVideoPluginsEnabled: false,
+        remotePlugins: []
     };
+
+    // return {
+    //     hello: {
+    //         world:
+    //             'worldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworldworld'
+    //     },
+    //     array: ['zero', 'one'],
+    //     key: 'value',
+    //     arrayOfObjects: [{ a: 'b' }, { a: 'c' }],
+    //     arrayOfArray: [
+    //         ['1', '2'],
+    //         ['3', '4'],
+    //         [{ a: 'b' }, { x: 'z' }],
+    //         [(['9', '10'], ['11', '12'], [1, 1.55])]
+    //     ]
+    // };
+
     // return {
     //     string: 'this is a test string',
     //     integer: 42,

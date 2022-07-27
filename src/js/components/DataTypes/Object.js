@@ -18,6 +18,7 @@ import { CollapsedIcon, ExpandedIcon } from './../ToggleIcons';
 
 //theme
 import Theme from './../../themes/getStyle';
+import { Elipsis } from '../Elipsis/Elipsis.styled';
 
 //increment 1 with each nested object & array
 const DEPTH_INCREMENT = 1;
@@ -122,7 +123,9 @@ class RjvObject extends React.PureComponent {
                     {...Theme(this.props.theme, 'ellipsis')}
                     class="node-ellipsis"
                     onClick={this.toggleCollapsed}
-                ></div>
+                >
+                    <Elipsis />
+                </div>
             );
         }
     };
@@ -257,16 +260,6 @@ class RjvObject extends React.PureComponent {
 
         keys.forEach(name => {
             variable = new JsonVariable(name, variables[name]);
-            //console.log({ variable });
-            // console.log({
-            //     arr: [
-            //         ...namespaceVariable,
-            //         {
-            //             name: variable.name,
-            //             type: variable.type
-            //         }
-            //     ]
-            // });
             if (parent_type === 'array_group' && index_offset) {
                 variable.name = parseInt(variable.name) + index_offset;
             }

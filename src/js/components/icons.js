@@ -103,9 +103,9 @@ export class AddVariable extends React.Component {
         return !this.state.clicked ? (
             <span
                 {...rest}
-                onClick={() => {
+                onClick={e => {
                     this.setState({ clicked: true });
-                    handleClick();
+                    handleClick(e);
                 }}
             >
                 <svg
@@ -310,6 +310,42 @@ export class CheckCircle extends React.PureComponent {
             </span>
         );
     }
+}
+
+export const RightChevron = ({ height, width }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            viewBox="0 0 24 24"
+        >
+            <path
+                fill="none"
+                fill-rule="evenodd"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.438 12.902l3 5.196 12.124-7"
+            />
+        </svg>
+    );
+};
+
+export function CrossIcon({ height, width }) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            viewBox="0 0 14 14"
+            fill="currentColor"
+        >
+            <path d="M1 14a1 1 0 01-.707-1.707l12-12a1 1 0 011.414 1.414l-12 12A1 1 0 011 14z" />
+            <path d="M13 14a1 1 0 01-.707-.293l-12-12A1 1 0 011.707.293l12 12A1 1 0 0113 14z" />
+        </svg>
+    );
 }
 
 function getIconStyle(style) {

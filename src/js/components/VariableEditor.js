@@ -31,6 +31,7 @@ import {
 
 //theme
 import Theme from './../themes/getStyle';
+import VariablePopup from './VariablePopup/VariablePopup';
 
 class VariableEditor extends React.PureComponent {
     constructor(props) {
@@ -43,7 +44,9 @@ class VariableEditor extends React.PureComponent {
             parsedInput: {
                 type: false,
                 value: null
-            }
+            },
+            showPopup: false,
+            popupPosition: {}
         };
     }
 
@@ -151,14 +154,39 @@ class VariableEditor extends React.PureComponent {
                 {onDelete !== false && editMode == false
                     ? this.getRemoveIcon()
                     : null}
-                {this.state.hovered && (
+                {(this.state.hovered || this.state.showPopup) && (
                     <AddVariable
                         style={{
                             cursor: 'pointer',
                             height: '1em',
                             width: '1em'
                         }}
-                        handleClick={() => {
+                        handleClick={e => {
+                            this.setState({
+                                popupPosition: e.target.getBoundingClientRect(),
+                                showPopup: true
+                            });
+                        }}
+                    />
+                )}
+                {this.state.showPopup && (
+                    <VariablePopup
+                        position={this.state.popupPosition}
+                        onClickAway={() => {
+                            this.setState({
+                                popupPosition: {},
+                                showPopup: false,
+                                hovered: false
+                            });
+                        }}
+                        onCancel={() => {
+                            this.setState({
+                                popupPosition: {},
+                                showPopup: false,
+                                hovered: false
+                            });
+                        }}
+                        onSubmit={key => {
                             let str = '';
                             let prevType = namespaceVariable[0].type;
                             namespaceVariable.forEach((item, index) => {
@@ -183,7 +211,12 @@ class VariableEditor extends React.PureComponent {
                             });
                             str += variable.name;
                             if (prevType === 'array') str += ']';
-                            onVariableAdd(str);
+                            onVariableAdd(key, str);
+                            this.setState({
+                                popupPosition: {},
+                                showPopup: false,
+                                hovered: false
+                            });
                         }}
                     />
                 )}

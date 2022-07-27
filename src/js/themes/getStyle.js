@@ -7,7 +7,7 @@ const colorMap = theme => ({
     ellipsisColor: theme.base09,
     braceColor: theme.base07,
     expandedIcon: theme.base0D,
-    collapsedIcon: theme.base0E,
+    collapsedIcon: theme.base0D,
     keyColor: theme.base07,
     arrayKeyColor: theme.base0C,
     objectSize: theme.base04,
@@ -28,11 +28,11 @@ const colorMap = theme => ({
         background: theme.base02
     },
     editVariable: {
-        editIcon: theme.base0E,
+        editIcon: theme.base0D,
         cancelIcon: theme.base09,
         removeIcon: theme.base09,
-        addIcon: theme.base0E,
-        checkIcon: theme.base0E,
+        addIcon: theme.base0D,
+        checkIcon: theme.base0D,
         background: theme.base01,
         color: theme.base0A,
         border: theme.base07
