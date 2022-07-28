@@ -32,7 +32,43 @@ import {
 //theme
 import Theme from './../themes/getStyle';
 import VariablePopup from './VariablePopup/VariablePopup';
-
+import styled, { css } from 'styled-components';
+const StyledKeyWrapper = styled.span`
+    padding: 0 5px;
+    &::before {
+        content: '';
+        clip-path: circle(50% at 100% 50%);
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        position: absolute;
+        left: -15px;
+        z-index: -1;
+    }
+    &::after {
+        content: '';
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        position: absolute;
+        right: -15px;
+        z-index: -1;
+        clip-path: circle(50% at 0 50%);
+    }
+    z-index: 1;
+    position: relative;
+    ${props =>
+        props.isHovered &&
+        css`
+            background-color: #2a7cff29;
+            &::after {
+                background-color: #2a7cff29;
+            }
+            &::before {
+                background-color: #2a7cff29;
+            }
+        `}
+`;
 class VariableEditor extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -84,31 +120,82 @@ class VariableEditor extends React.PureComponent {
             >
                 {type == 'array' ? (
                     displayArrayKey ? (
-                        <span
-                            {...Theme(theme, 'array-key')}
-                            key={variable.name + '_' + namespace}
-                        >
-                            {variable.name}
+                        <>
+                            <StyledKeyWrapper
+                                isHovered={
+                                    this.state.hovered || this.state.showPopup
+                                }
+                            >
+                                <span
+                                    {...Theme(theme, 'array-key')}
+                                    key={variable.name + '_' + namespace}
+                                >
+                                    {variable.name}
+                                </span>
+                                {(this.state.hovered ||
+                                    this.state.showPopup) && (
+                                    <AddVariable
+                                        style={{
+                                            cursor: 'pointer',
+                                            height: '1em',
+                                            width: '1em',
+                                            paddingLeft: '5px'
+                                        }}
+                                        handleClick={e => {
+                                            this.setState({
+                                                popupPosition: e.target.getBoundingClientRect(),
+                                                showPopup: true
+                                            });
+                                        }}
+                                    />
+                                )}
+                            </StyledKeyWrapper>
                             <div {...Theme(theme, 'colon')}>:</div>
-                        </span>
+                        </>
                     ) : null
                 ) : (
                     <span>
-                        <span
-                            {...Theme(theme, 'object-name')}
-                            class="object-key"
-                            key={variable.name + '_' + namespace}
+                        <StyledKeyWrapper
+                            isHovered={
+                                this.state.hovered || this.state.showPopup
+                            }
                         >
-                            {!!quotesOnKeys && (
-                                <span style={{ verticalAlign: 'top' }}>"</span>
-                            )}
-                            <span style={{ display: 'inline-block' }}>
-                                {variable.name}
+                            <span
+                                {...Theme(theme, 'object-name')}
+                                class="object-key"
+                                key={variable.name + '_' + namespace}
+                            >
+                                {!!quotesOnKeys && (
+                                    <span style={{ verticalAlign: 'top' }}>
+                                        "
+                                    </span>
+                                )}
+                                <span style={{ display: 'inline-block' }}>
+                                    {variable.name}
+                                </span>
+                                {!!quotesOnKeys && (
+                                    <span style={{ verticalAlign: 'top' }}>
+                                        "
+                                    </span>
+                                )}
                             </span>
-                            {!!quotesOnKeys && (
-                                <span style={{ verticalAlign: 'top' }}>"</span>
+                            {(this.state.hovered || this.state.showPopup) && (
+                                <AddVariable
+                                    style={{
+                                        cursor: 'pointer',
+                                        height: '1em',
+                                        width: '1em',
+                                        paddingLeft: '5px'
+                                    }}
+                                    handleClick={e => {
+                                        this.setState({
+                                            popupPosition: e.target.getBoundingClientRect(),
+                                            showPopup: true
+                                        });
+                                    }}
+                                />
                             )}
-                        </span>
+                        </StyledKeyWrapper>
                         <span {...Theme(theme, 'colon')}>:</span>
                     </span>
                 )}
@@ -154,21 +241,6 @@ class VariableEditor extends React.PureComponent {
                 {onDelete !== false && editMode == false
                     ? this.getRemoveIcon()
                     : null}
-                {(this.state.hovered || this.state.showPopup) && (
-                    <AddVariable
-                        style={{
-                            cursor: 'pointer',
-                            height: '1em',
-                            width: '1em'
-                        }}
-                        handleClick={e => {
-                            this.setState({
-                                popupPosition: e.target.getBoundingClientRect(),
-                                showPopup: true
-                            });
-                        }}
-                    />
-                )}
                 {this.state.showPopup && (
                     <VariablePopup
                         position={this.state.popupPosition}
