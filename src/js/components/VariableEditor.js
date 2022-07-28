@@ -38,25 +38,28 @@ const StyledKeyWrapper = styled.span`
     &::before {
         content: '';
         clip-path: circle(50% at 100% 50%);
-        width: 15px;
-        height: 15px;
+        aspect-ratio: 1 / 1;
+        height: 100%;
         display: inline-block;
         position: absolute;
-        left: -15px;
+        left: 0;
         z-index: -1;
+        transform: translateX(-100%);
     }
     &::after {
         content: '';
-        width: 15px;
-        height: 15px;
+        aspect-ratio: 1 / 1;
+        height: 100%;
         display: inline-block;
         position: absolute;
-        right: -15px;
         z-index: -1;
         clip-path: circle(50% at 0 50%);
+        right: 0;
+        transform: translateX(100%);
     }
     z-index: 1;
     position: relative;
+    display: inline-flex;
     ${props =>
         props.isHovered &&
         css`
